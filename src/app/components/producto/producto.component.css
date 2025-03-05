@@ -1,0 +1,82 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: rgb(0, 0, 0);
+}
+
+.productos {
+    display: flex;
+    gap: 90px;
+    flex-wrap: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: black;
+    border-radius: 12px;
+}
+
+.producto {
+    padding: 15px;
+    text-align: center;
+    width: 250px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+
+.producto img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.producto h3 {
+    font-size: 1.4em;
+    margin: 12px 0;
+    font-weight: 600;
+}
+
+.producto p {
+    font-size: 1.1em;
+    color: white;
+}
+
+button {
+    background-color: transparent;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(43, 43, 43);
+}
+
+.carrito-button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    border: 2px solid white;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.carrito-button:hover {
+    background-color: gray;
+    color: black;
+}
+
+h2 {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    width: 100%;
+    margin: 20px 0;
+}
