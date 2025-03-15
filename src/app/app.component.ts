@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ProductoComponent } from './components/producto/producto.component';
 import { RouterModule } from '@angular/router';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [CommonModule, RouterOutlet], // Importa RouterOutlet para el enrutador
+  template: "<router-outlet></router-outlet>", // Usamos template inline
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'proyecto';
+  title = 'mi-proyecto';
 }
 
 /*@Component({

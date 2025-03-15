@@ -1,51 +1,36 @@
-<div class="carrito-container">
-  <h2 class="carrito-titulo">Carrito de compras</h2>
+<div class="background">
+  <h2>Carrito de Compras</h2>
 
-  <div class="carrito-contenido" *ngIf="carrito.length > 0">
-    <ul class="carrito-lista">
-      <li class="carrito-item" *ngFor="let producto of carrito; let i = index">
-        <div class="producto-info">
-          <span class="producto-nombre">{{ producto.nombre }}</span>
-          <span class="producto-precio">${{ producto.precio.toFixed(2) }}</span>
-        </div>
-        <button class="eliminar-button" (click)="eliminarProducto(i)">Eliminar</button>
-      </li>
-    </ul>
-
-    <div class="carrito-resumen">
-      <div class="carrito-total">
-        <span>Total:</span>
-        <span>${{ calcularTotal().toFixed(2) }}</span>
-      </div>
-      <button class="recibo-button" (click)="generarRecibo()">Generar Recibo</button>
-    </div>
+  <div *ngIf="carrito.length === 0" class="empty-cart">
+    <p>El carrito está vacío.</p>
   </div>
 
-  <p *ngIf="carrito.length === 0" class="carrito-vacio">
-    <span class="carrito-vacio-icon">🛒</span>
-    El carrito está vacío
-  </p>
-
-  <div *ngIf="reciboData.length > 0" class="recibo">
-    <h3 class="recibo-titulo">Recibo</h3>
-    <table class="recibo-tabla">
+  <div *ngIf="carrito.length > 0">
+    <table class="carrito-table">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Nombre</th>
-          <th>Precio (IVA incluido)</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let producto of reciboData">
-          <td>{{ producto.id }}</td>
+        <tr *ngFor="let producto of carrito; let i = index">
           <td>{{ producto.nombre }}</td>
           <td>${{ producto.precio }}</td>
+          <td>{{ producto.cantidad }}</td>
+          <td>
+            <button class="agregar" (click)="agregarMas(i)" [disabled]="!isProductInStock(producto.id)">Agregar más</button>
+            <button class="eliminar" (click)="eliminarProducto(producto.id)">Eliminar</button>
+          </td>
         </tr>
       </tbody>
     </table>
-    <p class="total">Total (IVA incluido): <strong>${{ total }}</strong></p>
+    <button class="descargar" (click)="descargarCarrito()">Descargar Recibo</button>
   </div>
 
-  <button class="descargar-button" (click)="descargarXML()">Descargar Recibo</button>
+  <div class="actions">
+    <button (click)="irAlCatalogo()" class="volver-catalogo">Regresar al Catálogo</button>
+  </div>
 </div>

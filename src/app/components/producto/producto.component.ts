@@ -1,36 +1,59 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from '../../models/producto';
-import { ProductoService } from '../../services/producto.service';
 import { CommonModule } from '@angular/common';
+import { ProductoService } from '../../services/producto.service';
 import { CarritoService } from '../../services/carrito.service';
 import { Router } from '@angular/router';
+import { Producto } from '../../models/producto';
 
 @Component({
   selector: 'app-producto',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './producto.component.html',
-  styleUrl: './producto.component.css'
+  styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent implements OnInit {
+  productos: Producto[] = [];
+  loading: boolean = true;
 
-  productos: Producto[]=[];
-
-  constructor ( 
+  constructor(
     private productoService: ProductoService,
-    private carritoService:CarritoService,
-    private router:Router
-  ) {}  
+    private carritoService: CarritoService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void{
-    this.productos=this.productoService.obtenerProductos();
+  ngOnInit(): void {
+    this.cargarProductos();
+  }
+
+  cargarProductos(): void {
+    this.productoService.obtenerProducto().subscribe({
+      next: (data) => {
+        this.productos = data;
+        this.loading = false;
+        console.log('Productos cargados:', this.productos);
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+        this.productos = [];
+        this.loading = false;
+      }
+    });
   }
 
   agregarAlCarrito(producto: Producto): void {
-    this.carritoService.agregarProducto(producto);
-  
+    if (producto.cantidad > 0) {
+      this.carritoService.agregarProducto(producto);
+      this.cargarProductos();
+      console.log('Producto agregado al carrito:', producto);
+    }
   }
-  irAlcarrito(): void {
+
+  irAlCarrito(): void {
     this.router.navigate(['/carrito']);
+  }
+
+  irAlInventario(): void {
+    this.router.navigate(['/inventario']);
   }
 }

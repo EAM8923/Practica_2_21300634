@@ -1,12 +1,29 @@
-<h2>Productos</h2>
 
-<div class="productos">
-  <div *ngFor="let producto of productos" class="producto">
-    <img [src]="producto.imagen" alt="{{producto.nombre}}">
-    <h3>{{producto.nombre}}</h3>
-    <p>Precio: ${{producto.precio}}</p>
-    <button (click)="agregarAlCarrito(producto)">Agregar al carrito</button>
+<body>
+  <h2>Catálogo de productos</h2>
+
+  <div *ngIf="loading" class="loading">
+    <p>Cargando productos...</p>
   </div>
-</div>
 
-<button class="carrito-button" (click)="irAlcarrito()">Ir al carrito</button>
+  <div *ngIf="!loading && productos.length === 0" class="no-productos">
+    <p>No se encontraron productos.</p>
+  </div>
+
+  <div class="productos" *ngIf="!loading && productos.length > 0">
+    <div *ngFor="let producto of productos" class="producto">
+      <h3>{{ producto.nombre }}</h3>
+      <img [src]="producto.imagen" alt="{{ producto.nombre }}">
+      <p>Precio: ${{ producto.precio }}</p>
+      <p>Cantidad disponible: {{ producto.cantidad }}</p>
+      <button (click)="agregarAlCarrito(producto)" [disabled]="producto.cantidad <= 0">
+        {{ producto.cantidad > 0 ? 'Agregar al Carrito' : 'Sin stock' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button (click)="irAlCarrito()" class="ir-carrito-btn">Ir al Carrito</button>
+    <button (click)="irAlInventario()" class="ir-iventario-btn">Ir al Inventario</button>
+  </div>
+<body>

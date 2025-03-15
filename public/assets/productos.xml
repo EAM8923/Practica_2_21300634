@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productos>
+  <producto>
+    <id>5</id>
+    <nombre>Laptop</nombre>
+    <precio>3200</precio>
+    <imagen>/assets/image1.jpg</imagen>
+    <cantidad>40</cantidad>
+  </producto>
+  <producto>
+    <id>6</id>
+    <nombre>Telefono</nombre>
+    <precio>1900</precio>
+    <imagen>/assets/image2.jpg</imagen>
+    <cantidad>44</cantidad>
+  </producto>
+  <producto>
+    <id>7</id>
+    <nombre>Tablet</nombre>
+    <precio>2200</precio>
+    <imagen>/assets/images3.jpg</imagen>
+    <cantidad>58</cantidad>
+  </producto>
+  <producto>
+    <id>8</id>
+    <nombre>Chaifon</nombre>
+    <precio>1000000</precio>
+    <imagen>/assets/image1.jpg</imagen>
+    <cantidad>1</cantidad>
+  </producto>
+</productos>
